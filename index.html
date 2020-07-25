@@ -1,5 +1,64 @@
 <html>
     <body>
         <h1>Test</h1>
+        <div id="mytablediv"></div>
+        <button type="button" id="mybutton">Show</button>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <div>
+            Color: <input type="text" id="icolor" >
+            <br>
+            Age: <input type="text" id="iage" >
+            <br>
+
+            <button type="button" id="addbutton">Add</button>
+
+        </div>
+
+        <script>
+
+            class Car {
+                constructor(color, age) {
+                    this.color = color;
+                    this.age = age;
+                }
+            }
+            let carset = [];
+
+            var carone = new Car('Red', 1);
+            var cartwo = new Car('Yellow', 2);
+
+            carset.push(carone);
+            carset.push(cartwo);
+
+            $(document).ready(function() {
+
+                $('#mybutton').on('click', function() {
+                    var htmlContent = '<table><tr><th>Color</th><th>Age</th></tr>';
+                    carset.forEach(function(arrayItem){
+                        htmlContent+='<tr><td>' + arrayItem.color + '</td><td>' + arrayItem.age + '</td></tr>';
+                    });
+                    htmlContent+='</table>';
+                    $('#mytablediv').html(htmlContent);
+                });
+
+                $('#addbutton').on('click', function() {
+                    var colorValue = $('#icolor').val();
+                    var ageValue = $('#iage').val();
+                    var newcar = new Car(colorValue, ageValue);
+                    carset.push(newcar);
+                    $('#icolor').val('');
+                    $('#iage').val('');
+                    $('#mybutton').click();
+                });
+
+            });
+
+            
+
+
+
+        </script>
     </body>
 </html>
