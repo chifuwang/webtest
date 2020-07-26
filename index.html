@@ -1,64 +1,98 @@
 <html>
-    <body>
-        <h1>Test</h1>
-        <div id="mytablediv"></div>
-        <button type="button" id="mybutton">Show</button>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+    <h1>Test</h1>
+    <div id="mytablediv"></div>
+    <button type="button" id="mybutton">Show</button>
 
-        <div>
-            Color: <input type="text" id="icolor" >
-            <br>
-            Age: <input type="text" id="iage" >
-            <br>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-            <button type="button" id="addbutton">Add</button>
+    <div>
+        Color: <input type="text" id="icolor">
+        <br>
+        Age: <input type="text" id="iage">
+        <br>
 
-        </div>
+        <button type="button" id="addbutton">Add</button>
 
-        <script>
+    </div>
 
-            class Car {
-                constructor(color, age) {
-                    this.color = color;
-                    this.age = age;
-                }
+    <script>
+        class EntityInfo {
+            constructor(entityName, tableName, package, filedInfoArray, parentInfo, uniqueConstraintArray) {
+                this.entityName = entityName;
+                this.tableName = tableName;
+                this.package = package;
+                this.filedInfoArray = filedInfoArray;
+                this.parentInfo = parentInfo;
+                this.uniqueConstraintArray = uniqueConstraintArray;
             }
-            let carset = [];
+        }
+        class FieldInfo {
+            constructor(type, length, precision, scale, nullable, fieldName, columnName, package) {
+                this.type = type;
+                this.length = length;
+                this.precision = precision;
+                this.scale = scale;
+                this.nullable = nullable;
+                this.fieldName = fieldName;
+                this.columnName = column;
+                this.package = package;
+            }
+        }
+        class ParentInfo {
+            constructor(fieldName, columnName, package) {
+                this.fieldName = fieldName;
+                this.columnName = columnName;
+                this.package = package;
+            }
+        }
+        class UniqueConstraint {
+            constructor(constraintName, fieldArray) {
+                this.constraintNmae = constraintName;
+                this.fieldArray = fieldArray;
+            }
+        }
+        class Car {
+            constructor(color, age) {
+                this.color = color;
+                this.age = age;
+            }
+        }
 
-            var carone = new Car('Red', 1);
-            var cartwo = new Car('Yellow', 2);
 
-            carset.push(carone);
-            carset.push(cartwo);
+        let carset = [];
 
-            $(document).ready(function() {
+        var carone = new Car('Red', 1);
+        var cartwo = new Car('Yellow', 2);
 
-                $('#mybutton').on('click', function() {
-                    var htmlContent = '<table><tr><th>Color</th><th>Age</th></tr>';
-                    carset.forEach(function(arrayItem){
-                        htmlContent+='<tr><td>' + arrayItem.color + '</td><td>' + arrayItem.age + '</td></tr>';
-                    });
-                    htmlContent+='</table>';
-                    $('#mytablediv').html(htmlContent);
+        carset.push(carone);
+        carset.push(cartwo);
+
+        $(document).ready(function () {
+
+            $('#mybutton').on('click', function () {
+                var htmlContent = '<table><tr><th>Color</th><th>Age</th></tr>';
+                carset.forEach(function (arrayItem) {
+                    htmlContent += '<tr><td>' + arrayItem.color + '</td><td>' + arrayItem.age +
+                        '</td></tr>';
                 });
-
-                $('#addbutton').on('click', function() {
-                    var colorValue = $('#icolor').val();
-                    var ageValue = $('#iage').val();
-                    var newcar = new Car(colorValue, ageValue);
-                    carset.push(newcar);
-                    $('#icolor').val('');
-                    $('#iage').val('');
-                    $('#mybutton').click();
-                });
-
+                htmlContent += '</table>';
+                $('#mytablediv').html(htmlContent);
             });
 
-            
+            $('#addbutton').on('click', function () {
+                var colorValue = $('#icolor').val();
+                var ageValue = $('#iage').val();
+                var newcar = new Car(colorValue, ageValue);
+                carset.push(newcar);
+                $('#icolor').val('');
+                $('#iage').val('');
+                $('#mybutton').click();
+            });
 
+        });
+    </script>
+</body>
 
-
-        </script>
-    </body>
 </html>
