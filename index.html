@@ -19,17 +19,17 @@
 
     <script>
         class EntityInfo {
-            constructor(entityName, tableName, package, filedInfoArray, parentInfo, uniqueConstraintArray) {
+            constructor(entityName, tableName, packageName, filedInfoArray, parentInfo, uniqueConstraintArray) {
                 this.entityName = entityName;
                 this.tableName = tableName;
-                this.package = package;
+                this.packageName = packageName;
                 this.filedInfoArray = filedInfoArray;
                 this.parentInfo = parentInfo;
                 this.uniqueConstraintArray = uniqueConstraintArray;
             }
         }
         class FieldInfo {
-            constructor(type, length, precision, scale, nullable, fieldName, columnName, package) {
+            constructor(type, length, precision, scale, nullable, fieldName, columnName, packageName) {
                 this.type = type;
                 this.length = length;
                 this.precision = precision;
@@ -37,14 +37,14 @@
                 this.nullable = nullable;
                 this.fieldName = fieldName;
                 this.columnName = column;
-                this.package = package;
+                this.packageName = packageName;
             }
         }
         class ParentInfo {
-            constructor(fieldName, columnName, package) {
+            constructor(fieldName, columnName, packageName) {
                 this.fieldName = fieldName;
                 this.columnName = columnName;
-                this.package = package;
+                this.packageName = packageName;
             }
         }
         class UniqueConstraint {
